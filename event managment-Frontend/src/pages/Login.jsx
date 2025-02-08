@@ -19,36 +19,42 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-700">Login</h2>
-        <div className="mt-4">
+    <div className="flex flex-1 flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 px-4">
+      <h1 className="text-4xl md:text-5xl font-extrabold text-white text-center drop-shadow-lg animate-pulse mb-6">
+        🎉 Manage <span className="text-yellow-300">Events</span> Effortlessly!
+      </h1>
+      <div className="w-full max-w-md p-8 bg-white rounded-2xl shadow-2xl">
+        <h2 className="text-3xl font-extrabold text-center text-gray-800">Welcome Back</h2>
+        <p className="text-center text-gray-500">Login to your account</p>
+        <div className="mt-6">
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Enter your email"
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
           />
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Enter your password"
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-3 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
           />
           <button
             onClick={handleLogin}
-            className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-3 text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
           >
-            Login
+            Sign In
           </button>
           <p className="mt-4 text-center text-gray-600">
-            Don't have an account? 
-            <a href="/register" className="text-blue-500 hover:underline"> Create Account</a>
+            Don't have an account?  
+            <a href="/register" className="text-blue-600 font-semibold hover:underline"> Sign up</a>
           </p>
         </div>
       </div>
     </div>
   );
+  
+  
 };
 
 export default Login;

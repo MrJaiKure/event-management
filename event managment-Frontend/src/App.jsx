@@ -7,7 +7,7 @@ import { AuthContext, AuthProvider } from "./context/AuthContext";
 import { useContext } from "react";
 
 function App() {
-  // const { token} =  useContext(AuthContext);
+  // const { token} =  useContext(AuthContext)
   const token = localStorage.getItem("token");
   return (
     <AuthProvider>
