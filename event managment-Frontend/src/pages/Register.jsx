@@ -18,7 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/register", userData);
+      await axios.post("event-management-production-2eae.up.railway.app/api/auth/register", userData);
       alert("Registration successful! You can now log in.");
       navigate("/");
     } catch (err) {

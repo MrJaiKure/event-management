@@ -13,7 +13,12 @@ const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["https://event-management-three-zeta.vercel.app/"], // Allow frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+// event-management-production-2eae.up.railway.app this backendhosted uri
 
 // Connect to MongoDB
 mongoose 

@@ -4,7 +4,7 @@ import io from "socket.io-client";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
 
-const socket = io("http://localhost:5000");
+const socket = io("event-management-production-2eae.up.railway.app");
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/events");
+      const res = await axios.get("event-management-production-2eae.up.railway.app/api/events");
       setEvents(res.data);
       setFilteredEvents(res.data);
     } catch (error) {
@@ -35,7 +35,7 @@ const Dashboard = () => {
   };
   const fetchUserEvents = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/${user.id}`, {
+      const res = await axios.get(`event-management-production-2eae.up.railway.app/api/users/${user.id}`, {
         headers: { Authorization: localStorage.getItem("token") },
       });
       setUserEvents(res.data.createdEvents);
@@ -70,7 +70,7 @@ const Dashboard = () => {
       console.log("Joining event:", eventId);
   
       const response = await axios.post(
-        `http://localhost:5000/api/events/${eventId}/join`,
+        `event-management-production-2eae.up.railway.app/api/events/${eventId}/join`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }, // ✅ Correct format
@@ -93,7 +93,7 @@ const Dashboard = () => {
         return;
       }
   
-      await axios.delete(`http://localhost:5000/api/events/${eventId}`, {
+      await axios.delete(`event-management-production-2eae.up.railway.app/api/events/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` }, // ✅ Ensure correct format
       });
   

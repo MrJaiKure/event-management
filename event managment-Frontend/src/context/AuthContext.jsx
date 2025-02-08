@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("http://localhost:5000/api/auth/me", {
+        .get("event-management-production-2eae.up.railway.app/api/auth/me", {
           headers: { Authorization: `Bearer ${token}` }, // ✅ Fix: Added "Bearer"
         })
         .then((res) => setUser(res.data))
