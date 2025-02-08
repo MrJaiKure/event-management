@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate(); // Initialize navigate function
 
   const handleLogin = async () => {
     try {
@@ -12,10 +14,15 @@ const Login = () => {
         password,
       });
       localStorage.setItem("token", res.data.token);
-      window.location.href = "/dashboard";
+      navigate("/dashboard"); // Use navigate instead of window.location.href
     } catch (err) {
       alert("Login failed");
     }
+  };
+
+  // Function to navigate to the Register page
+  const handleNavigate = () => {
+    navigate("/register");
   };
 
   return (
@@ -47,14 +54,12 @@ const Login = () => {
           </button>
           <p className="mt-4 text-center text-gray-600">
             Don't have an account?  
-            <a href="/register" className="text-blue-600 font-semibold hover:underline"> Sign up</a>
+            <span onClick={handleNavigate} className="text-blue-600 font-semibold hover:underline cursor-pointer"> Sign up</span>
           </p>
         </div>
       </div>
     </div>
   );
-  
-  
 };
 
 export default Login;
