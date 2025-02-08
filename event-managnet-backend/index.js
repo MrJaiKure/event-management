@@ -21,6 +21,12 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
+// ✅ Health check route
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Server is running!" });
+});
+
+
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 
