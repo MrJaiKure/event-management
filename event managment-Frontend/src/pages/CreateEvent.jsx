@@ -28,8 +28,8 @@ const CreateEvent = () => {
 
     try {
       const response = await axios.post(
-        "event-management-production-2eae.up.railway.app/api/events",
-        // "event-management-production-2eae.up.railway.app/api/events",
+        "http://localhost:5000/api/events",
+        // "http://localhost:5000/api/events",
         eventData,
         {
           headers: { Authorization: `Bearer ${token}` }, // Fix: Added "Bearer"

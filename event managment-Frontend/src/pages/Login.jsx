@@ -6,10 +6,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate(); // Initialize navigate function
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  console.log( API_BASE_URL)
   const handleLogin = async () => {
+    
     try {
-      const res = await axios.post("event-management-production-2eae.up.railway.app/api/auth/login", {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, {
         email,
         password,
       });

@@ -13,12 +13,18 @@ const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
 app.use(express.json());
-app.use(cors({
-  origin: ["https://event-management-three-zeta.vercel.app/"], // Allow frontend domain
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
-// event-management-production-2eae.up.railway.app this backendhosted uri
+
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://event-management-three-zeta.vercel.app"], 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // Allow cookies and authentication headers
+  })
+);
+
+
+// http://localhost:5000 this backendhosted uri
 
 // Connect to MongoDB
 mongoose 

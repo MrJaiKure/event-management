@@ -4,8 +4,9 @@ import io from "socket.io-client";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../context/AuthContext";
 
-const socket = io("event-management-production-2eae.up.railway.app");
-
+const socket = io("https://event-management-production-2eae.up.railway.app");
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+console.log( API_BASE_URL)
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
   const [events, setEvents] = useState([]);
@@ -26,7 +27,7 @@ const Dashboard = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("event-management-production-2eae.up.railway.app/api/events");
+      const res = await axios.get(`${API_BASE_URL}/api/events`);
       setEvents(res.data);
       setFilteredEvents(res.data);
     } catch (error) {
@@ -35,7 +36,7 @@ const Dashboard = () => {
   };
   const fetchUserEvents = async () => {
     try {
-      const res = await axios.get(`event-management-production-2eae.up.railway.app/api/users/${user.id}`, {
+      const res = await axios.get(`${API_BASE_URL}/api/users/${user.id}`, {
         headers: { Authorization: localStorage.getItem("token") },
       });
       setUserEvents(res.data.createdEvents);
@@ -58,7 +59,7 @@ const Dashboard = () => {
       );
     }
   };
-
+ 
   const joinEvent = async (eventId) => {
     try {
       const token = localStorage.getItem("token");
@@ -70,7 +71,7 @@ const Dashboard = () => {
       console.log("Joining event:", eventId);
   
       const response = await axios.post(
-        `event-management-production-2eae.up.railway.app/api/events/${eventId}/join`,
+        `${API_BASE_URL}/api/events/${eventId}/join`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` }, // ✅ Correct format
@@ -93,7 +94,7 @@ const Dashboard = () => {
         return;
       }
   
-      await axios.delete(`event-management-production-2eae.up.railway.app/api/events/${eventId}`, {
+      await axios.delete(`${API_BASE_URL}/api/events/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` }, // ✅ Ensure correct format
       });
   

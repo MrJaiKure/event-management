@@ -6,12 +6,13 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  console.log( API_BASE_URL)
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("event-management-production-2eae.up.railway.app/api/auth/me", {
+        .get(`${API_BASE_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` }, // ✅ Fix: Added "Bearer"
         })
         .then((res) => setUser(res.data))

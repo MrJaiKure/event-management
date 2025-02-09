@@ -14,11 +14,11 @@ const Register = () => {
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("event-management-production-2eae.up.railway.app/api/auth/register", userData);
+      await axios.post(`${API_BASE_URL}/api/auth/register`, userData);
       alert("Registration successful! You can now log in.");
       navigate("/");
     } catch (err) {
